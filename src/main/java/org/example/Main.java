@@ -14,5 +14,8 @@ public class Main {
 
         String val3= scanner.nextLine();
         System.out.println("작가: "+val3);   //bbb
+
+        TestApp app=new TestApp();
+        app.run();
     }
 }
