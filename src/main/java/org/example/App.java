@@ -1,8 +1,7 @@
-import org.example.domain.WiseSaying;
-import org.example.domain.WiseSayingController;
+package org.example;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.example.domain.wiseSaying.WiseSayingController;
+
 import java.util.Scanner;
 
 
