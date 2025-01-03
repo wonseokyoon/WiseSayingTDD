@@ -1,4 +1,4 @@
-import org.example.TestApp;
+import org.example.App;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -11,7 +11,7 @@ public class TestBot {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
-        TestApp app = new TestApp();
+        App app = new App();
         app.run();
 
         return out.toString();

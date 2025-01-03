@@ -1,6 +1,5 @@
 package org.example;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
@@ -22,7 +21,7 @@ public class Main {
         String val3= scanner.nextLine();
         System.out.println("작가: "+val3);   //bbb
 
-        TestApp app=new TestApp();
+        App app=new App();
         app.run();
     }
     public static void test2() {
