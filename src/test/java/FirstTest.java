@@ -14,8 +14,8 @@ public class FirstTest {
 
     @Test
     void t2() {
-        App app = new App();
-        app.run();
+        //App app = new App();
+        //app.run();
 
         // aaa가 출력되는지
         //assertThat(result).isEqualTo("aaa");
@@ -24,47 +24,47 @@ public class FirstTest {
     @Test
     void t3(){
         String out=TestBot.run("");
-        assertThat(out
-                .contains("명언앱을 종료합니다"));
+        assertThat(out)
+                .containsSubsequence("명령","명언앱을 종료합니다");
     }
 
 
     @Test
-    @DisplayName("앱 시작 시 '==명언 앱==' 출력")
+    @DisplayName("명령을 여러번 입력할 수 있다")
     void t4() {
-        //테스트봇 선입력
-//        Scanner sc = new Scanner("종료\n");
-//
-//        ByteArrayOutputStream out = new ByteArrayOutputStream();
-//        System.setOut(new PrintStream(out));
-//
-//        TestApp app = new TestApp();
-//        app.run();
+        String out=TestBot.run("""
+                등록
+                등록
+                종료
+                """);
+        // 명령 ) 의 횟수 계산
+        long count= out.split("명령 \\)").length-1;
+        //검증
+        assertThat(count).isEqualTo(3);
 
-        String out=TestBot.run("");
+    }
 
-        // 출력 값 체크
-        assertThat(out.toString())
-//                "명언 앱"과 "명언앱을 종료합니다" 가 포함되는지 확인
-//                .contains("==명언 앱==")
-//                .contains("명언앱을 종료합니다");
+    @Test
+    @DisplayName("앱 시작시 '== 명언 앱 ==' 출력")
+    void t5() {
+        String out = TestBot.run("");
 
-//                단순히 확인하는 것을 넘어, 지정된 순서로 나타나는까지 확인
-                .containsSubsequence("==명언 앱==","명언앱을 종료합니다.");
+        assertThat(out)
+                .containsSubsequence("== 명언 앱 ==", "명언앱을 종료합니다.");
+
     }
 
     @Test
     @DisplayName("등록 - 명언 1개 입력")
-    void t5(){
-        String out=TestBot.run("""
+    void t6() {
+        String out = TestBot.run("""
                 등록
-                현재를 사랑하라. 
+                현재를 사랑하라.
                 작자미상
                 """);
 
         assertThat(out)
-                .containsSubsequence("명언: "
-                ,"작가: ");
-    }
+                .containsSubsequence("명언 : ", "작가 : ");
 
+    }
 }

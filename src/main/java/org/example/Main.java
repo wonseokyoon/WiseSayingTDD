@@ -21,8 +21,8 @@ public class Main {
         String val3= scanner.nextLine();
         System.out.println("작가: "+val3);   //bbb
 
-        App app=new App();
-        app.run();
+        //App app=new App();
+        //app.run();
     }
     public static void test2() {
         //origin: 모니터 화면
