@@ -23,7 +23,7 @@ public class FirstTest {
 
     @Test
     void t3(){
-        String out=TestBot.run("종료");
+        String out=TestBot.run("");
         assertThat(out
                 .contains("명언앱을 종료합니다"));
     }
@@ -41,7 +41,7 @@ public class FirstTest {
 //        TestApp app = new TestApp();
 //        app.run();
 
-        String out=TestBot.run("종료");
+        String out=TestBot.run("");
 
         // 출력 값 체크
         assertThat(out.toString())
@@ -56,7 +56,11 @@ public class FirstTest {
     @Test
     @DisplayName("등록 - 명언 1개 입력")
     void t5(){
-        String out=TestBot.run("등록\n현재를 사랑하라.\n작자미상\n종료");
+        String out=TestBot.run("""
+                등록
+                현재를 사랑하라. 
+                작자미상
+                """);
 
         assertThat(out)
                 .containsSubsequence("명언: "
