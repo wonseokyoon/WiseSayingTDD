@@ -99,5 +99,24 @@ public class FirstTest {
                 .contains("1번 명언이 등록되었습니다.");
     }
 
+    @Test
+    @DisplayName("생성되는 명언번호 계속 증가")
+    void t8() {
+        //입력
+        String out=TestBot.run("""
+                등록
+                현재를 사랑하라
+                작자미상
+                등록
+                현재를 사랑하라2
+                작자미상
+                """);
+
+        //출력
+        assertThat(out)
+                .contains("1번 명언이 등록되었습니다.")
+                .contains("2번 명언이 등록되었습니다.");
+    }
+
 
 }
