@@ -16,7 +16,7 @@ public class App {
     public App(Scanner sc){
         this.sc=sc;
         this.lastId=0;
-        this.wiseSayingList=new ArrayList<>();
+        wiseSayingList=new ArrayList<>();
     }
 
     public void run() {
