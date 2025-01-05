@@ -1,12 +1,5 @@
-
-import org.example.App;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInfo;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

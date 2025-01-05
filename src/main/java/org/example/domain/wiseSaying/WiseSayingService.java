@@ -5,21 +5,17 @@ import java.util.List;
 
 public class WiseSayingService {
 
-    private final List<WiseSaying> wiseSayingList;
-    private int lastId;
-
+    private WiseSayingRepository wiseSayingRepository;
     public WiseSayingService(){
-        wiseSayingList=new ArrayList<>();
+        wiseSayingRepository=new WiseSayingRepository();
     }
 
     public WiseSaying write(String content, String author) {
-        int id=++lastId;
-        WiseSaying wiseSaying=new WiseSaying(id,content,author);
-        wiseSayingList.add(wiseSaying);
-        return wiseSaying;
+        WiseSaying wiseSaying=new WiseSaying(content,author);
+        return wiseSayingRepository.save(wiseSaying);
     }
 
     public List<WiseSaying> getAllItems() {
-        return wiseSayingList;
+        return wiseSayingRepository.findAll();
     }
 }
