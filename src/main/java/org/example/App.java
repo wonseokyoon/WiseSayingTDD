@@ -21,7 +21,9 @@ public class App {
                 break;
             }
         }
+
         System.out.println("명언: ");
         System.out.println("작가: ");
+        System.out.println("1번 명언이 등록되었습니다.");
     }
 }
