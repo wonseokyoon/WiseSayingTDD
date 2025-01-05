@@ -46,7 +46,6 @@ public class FirstTest {
         App app = new App();
         app.run();
         assertThat(out.toString())
-                .contains("==명언 앱==")
-                .contains("명언앱을 종료합니다.");
+                .containsSubsequence("==명언 앱==","명언앱을 종료합니다.");
     }
 }
