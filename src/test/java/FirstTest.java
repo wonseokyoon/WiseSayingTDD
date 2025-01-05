@@ -58,8 +58,7 @@ public class FirstTest {
 
         //출력
         assertThat(out)
-                .contains("명언: ")
-                .contains("작가: ");
+                .containsSubsequence("명언: ","작가: ");
     }
 
 
