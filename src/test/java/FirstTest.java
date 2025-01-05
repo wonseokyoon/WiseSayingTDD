@@ -32,13 +32,34 @@ public class FirstTest {
         String out= TestBot.run("");
 
         assertThat(out)
+                .contains("명령) ")
                 .contains("명언앱을 종료합니다.");
 
     }
 
     @Test
-    @DisplayName("앱 시작시 '== 명언 앱 ==' 출력")
+    @DisplayName("명령 여러개 입력")
     void t4() {
+        //입력
+        String out=TestBot.run("""
+                등록
+                등록
+                종료
+                """);
+        //명령 횟수를 세서 검증
+        long count=out.split("명령\\) ").length-1;
+        System.out.println(count);
+
+        //출력
+//        assertThat(out)
+//                .contains("명령) ")
+//                .contains("명령) ");
+        assertThat(count).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("앱 시작시 '== 명언 앱 ==' 출력")
+    void t5() {
         String out=TestBot.run("");
 
         assertThat(out)
@@ -47,7 +68,7 @@ public class FirstTest {
 
     @Test
     @DisplayName("등록 - 명언 1개 입력")
-    void t5() {
+    void t6() {
         //입력
         String out=TestBot.run("""
                 등록
