@@ -44,6 +44,9 @@ public class FirstTest {
         String out=TestBot.run("""
                 등록
                 등록
+                등록
+                등록
+                등록
                 종료
                 """);
         //명령 횟수를 세서 검증
@@ -54,7 +57,7 @@ public class FirstTest {
 //        assertThat(out)
 //                .contains("명령) ")
 //                .contains("명령) ");
-        assertThat(count).isEqualTo(3);
+        assertThat(count).isEqualTo(6);
     }
 
     @Test
