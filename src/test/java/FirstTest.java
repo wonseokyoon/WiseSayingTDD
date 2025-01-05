@@ -43,10 +43,14 @@ public class FirstTest {
         //입력
         String out=TestBot.run("""
                 등록
+                현재를 사랑하라.
+                작자미상
                 등록
+                현재를 사랑하라.
+                작자미상
                 등록
-                등록
-                등록
+                현재를 사랑하라.
+                작자미상
                 종료
                 """);
         //명령 횟수를 세서 검증
@@ -57,7 +61,7 @@ public class FirstTest {
 //        assertThat(out)
 //                .contains("명령) ")
 //                .contains("명령) ");
-        assertThat(count).isEqualTo(6);
+        assertThat(count).isEqualTo(4);
     }
 
     @Test
