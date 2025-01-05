@@ -84,5 +84,20 @@ public class FirstTest {
                 .containsSubsequence("명언: ","작가: ");
     }
 
+    @Test
+    @DisplayName("등록시 명언 번호 노출")
+    void t7() {
+        //입력
+        String out=TestBot.run("""
+                등록
+                현재를 사랑하라
+                작자미상
+                """);
+
+        //출력
+        assertThat(out)
+                .contains("1번 명언이 등록되었습니다.");
+    }
+
 
 }
