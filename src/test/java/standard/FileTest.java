@@ -5,14 +5,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.PATH;
 
 public class FileTest {
-
+    String file="src/test/java/test/test.txt";
     @Test
     @DisplayName("최초의 파일 테스트")
     void t1(){
@@ -22,7 +20,7 @@ public class FileTest {
     @Test
     @DisplayName("빈 파일 생성")
     void t2(){
-        String file="test.txt";
+//        String file="test.txt";
 
         Util.File.createFile(file);
 
@@ -34,7 +32,7 @@ public class FileTest {
     @DisplayName("파일 내용 읽어오기")
     void t3(){
         String testcontent="Hello World!";
-        String file="test.txt";
+//        String file="test.txt";
         //파일을 Hello,World 내용으로 생성
         Util.File.write(file,testcontent);
 
@@ -48,7 +46,7 @@ public class FileTest {
     @DisplayName("파일 내용 수정")
     void t4(){
 
-        String file="test.txt";
+//        String file="src/test/java/test/test.txt";
         String writeContent="modify content";
 
         Util.File.write(file,writeContent);
@@ -61,7 +59,7 @@ public class FileTest {
     @DisplayName("파일 내용 삭제")
     void t5(){
 
-        String file="test.txt";
+//        String file="test.txt";
 
         // test3 파일 생성
         Util.File.createFile(file);
