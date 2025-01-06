@@ -17,7 +17,13 @@ public class Util {
             Path filepath=Paths.get(file);
 
             try {
-                Files.createFile(filepath);
+                if(Files.exists(filepath)){
+//                    System.out.println("파일이 이미 존재함");
+                    write(file,"");
+                }
+                else{
+                    Files.createFile(filepath);
+                }
             } catch (IOException e) {
                 System.out.println("파일 생성중 실패");
                 e.printStackTrace();
@@ -45,9 +51,7 @@ public class Util {
                 System.out.println("파일 작성 실패");
                 e.printStackTrace();
             }
-
         }
-
 
         public static void delete(String file) {
             Path filePath=Paths.get(file);

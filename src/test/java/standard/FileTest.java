@@ -22,7 +22,7 @@ public class FileTest {
     @Test
     @DisplayName("빈 파일 생성")
     void t2(){
-        String file="test3.txt";
+        String file="test.txt";
 
         Util.File.createFile(file);
 
@@ -33,9 +33,10 @@ public class FileTest {
     @Test
     @DisplayName("파일 내용 읽어오기")
     void t3(){
-        String testcontent="Hello, World!";
-
+        String testcontent="Hello World!";
         String file="test.txt";
+        //파일을 Hello,World 내용으로 생성
+        Util.File.write(file,testcontent);
 
         String content=Util.File.readAsString(file);
 
@@ -60,7 +61,7 @@ public class FileTest {
     @DisplayName("파일 내용 삭제")
     void t5(){
 
-        String file="test3.txt";
+        String file="test.txt";
 
         // test3 파일 생성
         Util.File.createFile(file);
@@ -74,9 +75,6 @@ public class FileTest {
         assertThat(Files.exists(Paths.get(file)))
                 .isFalse();
     }
-
-
-
 
 
 }
