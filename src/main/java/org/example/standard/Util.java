@@ -49,6 +49,8 @@ public class Util {
         }
 
 
+        public static void delete(String file) {
+        }
     }
 
 }
