@@ -75,7 +75,16 @@ public class Util {
             }
         }
 
+        public static void deleteDir(String dirPath) {
+            Path DirPath=Paths.get(dirPath);
 
+            try {
+                Files.delete(DirPath);
+            } catch (IOException e) {
+                System.out.println("폴더 삭제 실패");
+                e.printStackTrace();
+            }
+        }
     }
 
 }
