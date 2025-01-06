@@ -48,8 +48,7 @@ public class CommandTest {
         Command cmd=new Command("삭제?id=1");
         int id=cmd.getParam();
 
-        assertThat(id).isEqualTo("1");
-
+        assertThat(id).isEqualTo(1);
     }
 
 }
