@@ -3,6 +3,7 @@ package org.example;
 
 import org.example.domain.wiseSaying.SystemController;
 import org.example.domain.wiseSaying.WiseSayingController;
+import org.example.global.Command;
 
 import java.util.Scanner;
 
@@ -24,6 +25,7 @@ public class App {
             System.out.println("명령) ");
             String cmd=sc.nextLine();
 
+            Command command=new Command(cmd);
             String[] cmdBits = cmd.split("\\?");
             String actionName = cmdBits[0];
             switch (actionName){
@@ -37,10 +39,11 @@ public class App {
                     wiseSayingController.actionprint();
                     break;
                 case "삭제":
-                    wiseSayingController.actiondelete(cmd);
+                    wiseSayingController.actiondelete(command);
                     break;
                 case "수정":
-                    //wiseSayingController.actionmodify(cmd);
+                    wiseSayingController.actionModify(command);
+                    break;
             }
         }
 

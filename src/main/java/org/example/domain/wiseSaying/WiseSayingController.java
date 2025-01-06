@@ -1,11 +1,8 @@
 package org.example.domain.wiseSaying;
 
-import jdk.jshell.SourceCodeAnalysis;
+import org.example.global.Command;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class WiseSayingController {
 
@@ -44,16 +41,39 @@ public class WiseSayingController {
         });
     }
 
-    public void actiondelete(String cmd) {
+    public void actiondelete(Command cmd) {
         // 삭제?id=1
-        String[] paramBits = cmd.split("=");
-        String strId = paramBits[1];
-        int id = Integer.parseInt(strId);
+        int id = cmd.getParamAsInt("id");
 
         boolean result = wiseSayingService.delete(id);
 
         if(!result) {
             System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id));
         }
+    }
+
+    public void actionModify(Command cmd) {
+        // 수정?id=1
+        int id = cmd.getParamAsInt("id");
+
+        Optional<WiseSaying> opwiseSaying=wiseSayingService.getItem(id);
+        WiseSaying wiseSaying=opwiseSaying.orElse(null);
+
+        if(wiseSaying==null){
+            System.out.println("해당 명언은 존재하지 않습니다.");
+            return;
+        }
+
+        System.out.printf("명언(기존) :%s\n",wiseSaying.getContent());
+        System.out.println("명언 : ");
+        String newContent=sc.nextLine();
+
+        System.out.printf("작가(기존) :%s\n",wiseSaying.getAuthor());
+        System.out.println("작가 : ");
+        String newAuthor=sc.nextLine();
+
+        wiseSayingService.modify(wiseSaying,newContent,newAuthor);
+        System.out.println("%d번 명언이 수정되었습니다.".formatted(id));
+
     }
 }
