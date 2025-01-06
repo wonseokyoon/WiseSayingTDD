@@ -14,7 +14,7 @@ public class Util {
 
 
         public static void createFile(String file) {
-            Path filepath=Paths.get("file");
+            Path filepath=Paths.get(file);
 
             try {
                 Files.createFile(filepath);
@@ -38,7 +38,11 @@ public class Util {
         }
 
         public static void write(String file, String writeContent) {
+
+
         }
+
+
     }
 
 }

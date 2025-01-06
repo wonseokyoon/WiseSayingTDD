@@ -45,7 +45,7 @@ public class FileTest {
 
     @Test
     @DisplayName("파일 내용 수정")
-    void t3(){
+    void t4(){
 
         String file="test.txt";
         String writeContent="modify content";
