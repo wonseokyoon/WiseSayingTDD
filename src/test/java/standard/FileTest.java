@@ -111,12 +111,14 @@ public class FileTest {
     @BeforeAll
     static void beforeAll(){
         System.out.println("테스트 시작 전에 한번 실행");
+        Util.File.createDir("src/test/java/test");
     }
 
     // 테스트 후처리
     @AfterAll
     static void afterAll(){
         System.out.println("테스트 실행 후 한번 실행");
+        Util.File.deleteDir("src/test/java/test");
     }
 
 
