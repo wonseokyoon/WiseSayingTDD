@@ -38,7 +38,13 @@ public class Util {
         }
 
         public static void write(String file, String writeContent) {
-
+            Path filePath=Paths.get(file);
+            try {
+                Files.writeString(filePath,writeContent);
+            } catch (IOException e) {
+                System.out.println("파일 작성 실패");
+                e.printStackTrace();
+            }
 
         }
 
