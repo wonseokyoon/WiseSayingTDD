@@ -1,4 +1,4 @@
-package domain.wiseSaying;
+package standard;
 
 import org.example.App;
 
