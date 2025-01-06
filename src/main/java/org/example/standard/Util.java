@@ -66,8 +66,13 @@ public class Util {
 
 
         public static void createDir(String dirPath) {
-
-
+            Path DirPath=Paths.get(dirPath);
+            try {
+                Files.createDirectories(DirPath);
+            } catch (IOException e) {
+                System.out.println("디렉터리 생성 실패");
+                e.printStackTrace();
+            }
         }
     }
 
