@@ -46,7 +46,8 @@ public class CommandTest {
     @DisplayName("파라미터를 반환한다 - 입력값이 삭제?id=1일때 1을 반환")
     void t5(){
         Command cmd=new Command("삭제?id=1");
-        int id=cmd.getParam();
+        String strid=cmd.getParam();
+        int id=Integer.parseInt(strid);
 
         assertThat(id).isEqualTo(1);
     }
@@ -55,13 +56,13 @@ public class CommandTest {
     @DisplayName("파라미터가 불완전할 때 - 삭제?id")
     void t6(){
         Command cmd1=new Command("삭제?id1");
-        int id1=cmd1.getParam();
+        String id1=cmd1.getParam();
         Command cmd2=new Command("삭제?id");
-        int id2=cmd2.getParam();
+        String id2=cmd2.getParam();
         Command cmd3=new Command("삭제?id=aa");
-        int id3=cmd3.getParam();
+        String id3=cmd3.getParam();
 
-        assertThat(id1).isEqualTo("1");
+        assertThat(id1).isNull();
         assertThat(id2).isNull();
         assertThat(id3).isEqualTo("aa");
 
