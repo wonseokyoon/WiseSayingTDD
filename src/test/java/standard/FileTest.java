@@ -10,6 +10,8 @@ import java.nio.file.Paths;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class FileTest {
+
+
     String file="src/test/java/test/test.txt";
     @Test
     @DisplayName("최초의 파일 테스트")
@@ -73,6 +75,28 @@ public class FileTest {
         assertThat(Files.exists(Paths.get(file)))
                 .isFalse();
     }
+
+    //테스트 시작 전에 test 폴더 생성
+    @Test
+    @DisplayName("폴더 생성")
+    void t6(){
+
+        String dirPath="src/test/java/test";    //디렉터리 경로
+        Util.File.createDir(dirPath);
+
+        // 폴더가 존재하는지
+        assertThat(Files.exists(Paths.get(dirPath)))
+                .isTrue();
+        // 폴더가 맞는지
+        assertThat(Files.isDirectory(Paths.get(dirPath)))
+                .isTrue();
+    }
+
+
+
+
+
+    // 테스트 종료 후에 test 폴더 삭제
 
 
 }
