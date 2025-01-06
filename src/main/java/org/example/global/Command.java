@@ -31,8 +31,10 @@ public class Command {
     }
 
 
-    public String getParam() {
+    public String getParam(String key) {
         //삭제?id=1
+
+
 
         return paramValue;
     }
