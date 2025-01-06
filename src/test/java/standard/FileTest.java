@@ -1,6 +1,8 @@
 package standard;
 
 import org.example.standard.Util;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -104,6 +106,19 @@ public class FileTest {
         assertThat(Files.exists(Paths.get(dirPath)))
                 .isFalse();
     }
+
+    //테스트 전처리
+    @BeforeAll
+    static void beforeAll(){
+        System.out.println("테스트 시작 전에 한번 실행");
+    }
+
+    // 테스트 후처리
+    @AfterAll
+    static void afterAll(){
+        System.out.println("테스트 실행 후 한번 실행");
+    }
+
 
 
 
