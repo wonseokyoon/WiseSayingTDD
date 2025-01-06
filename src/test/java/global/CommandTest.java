@@ -22,4 +22,14 @@ public class CommandTest {
         assertThat(actionName).isEqualTo("삭제");
 
     }
+
+    @Test
+    @DisplayName("action 네임을 얻어올 수 있다. - ?가 없어도 삭제가 나와야한다")
+    void t3(){
+        Command cmd=new Command("삭제");
+        String actionName=cmd.getActionName();
+
+        assertThat(actionName).isEqualTo("삭제");
+
+    }
 }
