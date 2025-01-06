@@ -2,12 +2,15 @@ package org.example.global;
 
 public class Command {
     // 쪼개기 작업
-    public Command(String cmd){
 
+    String actionName;
+    public Command(String cmd){
+        String[] cmdBits=cmd.split("\\?");
+        actionName=cmdBits[0];
 
     }
 
     public String getActionName() {
-        return "삭제";
+        return actionName;
     }
 }
