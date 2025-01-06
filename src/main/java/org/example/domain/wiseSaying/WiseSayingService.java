@@ -1,6 +1,5 @@
 package org.example.domain.wiseSaying;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class WiseSayingService {
