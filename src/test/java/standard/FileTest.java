@@ -92,11 +92,19 @@ public class FileTest {
                 .isTrue();
     }
 
-
-
-
-
     // 테스트 종료 후에 test 폴더 삭제
+    @Test
+    @DisplayName("폴더 삭제")
+    void t7(){
+
+        String dirPath="src/test/java/test";    //디렉터리 경로
+        Util.File.deleteDir(dirPath);
+
+        // 폴더가 존재하는지
+        assertThat(Files.exists(Paths.get(dirPath)))
+                .isFalse();
+    }
+
 
 
 }
