@@ -1,10 +1,12 @@
+package domain.wiseSaying;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class FirstTest {
+public class wiseSayingControllerTest {
     @Test
     void t1() {
         int rst = 1;
@@ -34,7 +36,7 @@ public class FirstTest {
     @DisplayName("명령 여러개 입력")
     void t4() {
         //입력
-        String out=TestBot.run("""
+        String out= TestBot.run("""
                 등록
                 현재를 사랑하라.
                 작자미상
@@ -60,7 +62,7 @@ public class FirstTest {
     @Test
     @DisplayName("앱 시작시 '== 명언 앱 ==' 출력")
     void t5() {
-        String out=TestBot.run("");
+        String out= TestBot.run("");
 
         assertThat(out)
                 .containsSubsequence("==명언 앱==","명언앱을 종료합니다.");
@@ -70,7 +72,7 @@ public class FirstTest {
     @DisplayName("등록 - 명언 1개 입력")
     void t6() {
         //입력
-        String out=TestBot.run("""
+        String out= TestBot.run("""
                 등록
                 현재를 사랑하라
                 작자미상
@@ -85,7 +87,7 @@ public class FirstTest {
     @DisplayName("등록시 명언 번호 노출")
     void t7() {
         //입력
-        String out=TestBot.run("""
+        String out= TestBot.run("""
                 등록
                 현재를 사랑하라
                 작자미상
@@ -100,7 +102,7 @@ public class FirstTest {
     @DisplayName("생성되는 명언번호 계속 증가")
     void t8() {
         //입력
-        String out=TestBot.run("""
+        String out= TestBot.run("""
                 등록
                 현재를 사랑하라
                 작자미상
@@ -119,7 +121,7 @@ public class FirstTest {
     @DisplayName("목록 - 명언 2개 입력하면 입력된 명언들이 출력된다.")
     void t9() {
         //입력
-        String out=TestBot.run("""
+        String out= TestBot.run("""
                 등록
                 현재를 사랑하라.
                 작자미상
@@ -138,10 +140,9 @@ public class FirstTest {
     }
 
     @Test
-    @DisplayName("삭제 - id를 이용해서 해당 id의 명언을 삭제할 수 있다")
+    @DisplayName("삭제 - id를 이용해서 해당 id의 명언을 삭제할 수 있다. 입력 : 삭제?id=1")
     void t10() {
-        //입력
-        String out=TestBot.run("""
+        String out = TestBot.run("""
                 등록
                 현재를 사랑하라.
                 작자미상
@@ -149,12 +150,13 @@ public class FirstTest {
                 과거에 집착하지 마라.
                 작자미상
                 삭제?id=1
+                목록
                 """);
 
-        //출력
+
         assertThat(out)
-                .doesNotContain("1 / 작자미상 / 현재를 사랑하라.")
-                .contains("2 / 작자미상 / 과거에 집착하지 마라.");
+                .contains("2 / 작자미상 / 과거에 집착하지 마라.")
+                .doesNotContain("1 / 작자미상 / 현재를 사랑하라.");
     }
 
 

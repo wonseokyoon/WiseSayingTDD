@@ -24,17 +24,23 @@ public class App {
             System.out.println("명령) ");
             String cmd=sc.nextLine();
 
-            String[] cmdBit=cmd.split("\\?");
-            switch (cmdBit[0]){
+            String[] cmdBits = cmd.split("\\?");
+            String actionName = cmdBits[0];
+            switch (actionName){
                 case "종료":
                     systemController.exit();
                     return;
                 case "등록":
                     wiseSayingController.actionwriter();
+                    break;
                 case "목록":
                     wiseSayingController.actionprint();
+                    break;
                 case "삭제":
                     wiseSayingController.actiondelete(cmd);
+                    break;
+                case "수정":
+                    //wiseSayingController.actionmodify(cmd);
             }
         }
 

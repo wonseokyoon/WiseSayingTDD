@@ -1,3 +1,5 @@
+package domain.wiseSaying;
+
 import org.example.App;
 
 import java.io.ByteArrayOutputStream;

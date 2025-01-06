@@ -45,18 +45,15 @@ public class WiseSayingController {
     }
 
     public void actiondelete(String cmd) {
-        String param = cmd.split("\\?")[1];
-        String[] paramBits = param.split("=");
+        // 삭제?id=1
+        String[] paramBits = cmd.split("=");
         String strId = paramBits[1];
         int id = Integer.parseInt(strId);
 
-        boolean result=wiseSayingService.delete(id);
+        boolean result = wiseSayingService.delete(id);
 
-        if(!result){
+        if(!result) {
             System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id));
         }
-
-
-
     }
 }
