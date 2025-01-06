@@ -22,7 +22,7 @@ public class FileTest {
     @Test
     @DisplayName("빈 파일 생성")
     void t2(){
-        String file="test.txt";
+        String file="test3.txt";
 
         Util.File.createFile(file);
 
@@ -62,12 +62,15 @@ public class FileTest {
 
         String file="test3.txt";
 
+        // test3 파일 생성
         Util.File.createFile(file);
         assertThat(Files.exists(Paths.get(file)))
                 .isTrue();
 
+        // test3 파일 삭제
         Util.File.delete(file);
 
+        // 삭제 됐는지 확인
         assertThat(Files.exists(Paths.get(file)))
                 .isFalse();
     }
