@@ -56,7 +56,21 @@ public class FileTest {
                 .isEqualTo(writeContent);
     }
 
+    @Test
+    @DisplayName("파일 내용 삭제")
+    void t5(){
 
+        String file="test3.txt";
+
+        Util.File.createFile(file);
+        assertThat(Files.exists(Paths.get(file)))
+                .isTrue();
+
+        Util.File.delete(file);
+
+        assertThat(Files.exists(Paths.get(file)))
+                .isFalse();
+    }
 
 
 
