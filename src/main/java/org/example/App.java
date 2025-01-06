@@ -24,7 +24,8 @@ public class App {
             System.out.println("명령) ");
             String cmd=sc.nextLine();
 
-            switch (cmd){
+            String[] cmdBit=cmd.split("\\?");
+            switch (cmdBit[0]){
                 case "종료":
                     systemController.exit();
                     return;
@@ -32,6 +33,8 @@ public class App {
                     wiseSayingController.actionwriter();
                 case "목록":
                     wiseSayingController.actionprint();
+                case "삭제":
+                    wiseSayingController.actiondelete(cmd);
             }
         }
 

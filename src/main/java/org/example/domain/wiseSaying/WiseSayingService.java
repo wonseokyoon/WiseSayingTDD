@@ -17,4 +17,8 @@ public class WiseSayingService {
     public List<WiseSaying> getAllItems() {
         return wiseSayingRepository.findAll();
     }
+
+    public boolean delete(int id) {
+        return wiseSayingRepository.deleteById(id);
+    }
 }
