@@ -1,5 +1,15 @@
 package org.example.domain.wiseSaying;
 
+import lombok.*;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class WiseSaying {
     private int id;
     private String content;
@@ -10,31 +20,25 @@ public class WiseSaying {
         this.author = author;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
     public boolean isNew() {
         return this.id==0;  // 참이면 새로 만든 wisesaying
     }
-}
+
+    public Map<String,Object> toMap(){
+        Map<String,Object> map=new LinkedHashMap<>();
+        map.put("id",id);
+        map.put("content",content);
+        map.put("author",author);
+
+        return map;
+    }
+
+    public static WiseSaying fromMap(Map<String,Object> map) {
+        int id=(int)map.get("id");
+        String content=(String) map.get("content");
+        String author=(String) map.get("author");
+
+        return new WiseSaying(id,content,author);
+    }
+
+    }

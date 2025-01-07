@@ -63,6 +63,27 @@ public class JsonTest {
                         """.stripIndent().trim());
     }
 
+    @Test
+    @DisplayName("WiseSaying을 Map으로 변환 -> Json으로 변환")
+    void t5() {
+        WiseSaying wiseSaying = new WiseSaying(1, "aaa", "bbb");
+        Map<String, Object> wiseSayingMap = wiseSaying.toMap();
+        String filePath = "test/%d.json".formatted(wiseSaying.getId());
+        Util.Json.writeAsMap(filePath, wiseSayingMap);
+        boolean rst = Files.exists(Path.of(filePath));
+        assertThat(rst).isTrue();
+        String content = Util.File.readAsString(filePath);
+        assertThat(content)
+                .isEqualTo("""
+                        {
+                            "id" : 1,
+                            "content" : "aaa",
+                            "author" : "bbb"
+                        }
+                        """.stripIndent().trim()
+                );
+    }
+
 
 
 }
