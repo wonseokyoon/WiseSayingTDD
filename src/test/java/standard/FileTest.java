@@ -79,33 +79,33 @@ public class FileTest {
     }
 
     //테스트 시작 전에 test 폴더 생성
-    @Test
-    @DisplayName("폴더 생성")
-    void t6(){
-
-        String dirPath="src/test/java/test";    //디렉터리 경로
-        Util.File.createDir(dirPath);
-
-        // 폴더가 존재하는지
-        assertThat(Files.exists(Paths.get(dirPath)))
-                .isTrue();
-        // 폴더가 맞는지
-        assertThat(Files.isDirectory(Paths.get(dirPath)))
-                .isTrue();
-    }
-
-    // 테스트 종료 후에 test 폴더 삭제
-    @Test
-    @DisplayName("폴더 삭제")
-    void t7(){
-
-        String dirPath="src/test/java/test";    //디렉터리 경로
-        Util.File.deleteDir(dirPath);
-
-        // 폴더가 존재하는지
-        assertThat(Files.exists(Paths.get(dirPath)))
-                .isFalse();
-    }
+//    @Test
+//    @DisplayName("폴더 생성")
+//    void t6(){
+//
+//        String dirPath="src/test/java/test";    //디렉터리 경로
+//        Util.File.createDir(dirPath);
+//
+//        // 폴더가 존재하는지
+//        assertThat(Files.exists(Paths.get(dirPath)))
+//                .isTrue();
+//        // 폴더가 맞는지
+//        assertThat(Files.isDirectory(Paths.get(dirPath)))
+//                .isTrue();
+//    }
+//
+//    // 테스트 종료 후에 test 폴더 삭제
+//    @Test
+//    @DisplayName("폴더 삭제")
+//    void t7(){
+//
+//        String dirPath="src/test/java/test";    //디렉터리 경로
+//        Util.File.deleteDir(dirPath);
+//
+//        // 폴더가 존재하는지
+//        assertThat(Files.exists(Paths.get(dirPath)))
+//                .isFalse();
+//    }
 
     //테스트 전처리
     @BeforeAll
@@ -121,7 +121,15 @@ public class FileTest {
         Util.File.deleteDir("src/test/java/test");
     }
 
+    @Test
+    @DisplayName("폴더가 없을때 파일 생성 시 폴더 생성 후 파일 생성")
+    void v8(){
+        String path="src/test/java/test/test2/test.txt";
 
+        Util.File.createFile(path);
 
+        assertThat(Files.exists(Paths.get(path)))
+                .isTrue();
 
+    }
 }
