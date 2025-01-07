@@ -44,3 +44,7 @@ bin/
 
 ### test
 src/test/java/test/
+src/test/java/domain/wiseSaying/repository/
+src/main/java/org/example/domain/wiseSaying/repository/
+/test/
+.gitignore

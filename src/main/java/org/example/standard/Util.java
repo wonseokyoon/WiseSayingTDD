@@ -3,9 +3,9 @@ package org.example.standard;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Map;
 
 public class Util {
-
     public static class File{
         public static void test(){
             System.out.println("파일 유틸 테스트");
@@ -121,6 +121,48 @@ public class Util {
                 System.err.println("폴더 삭제 중 오류 발생: " + e.getMessage());
             }
         }
+    }
+
+    public static class Json{
+
+        //map을 Json으로 변환
+        public static String mapToJson(Map<String,Object> map){
+            StringBuilder jsonBuilder=new StringBuilder();
+            jsonBuilder.append("{\n");
+
+            int i=0;
+
+            for(String key:map.keySet()){
+                Object obj=map.get(key);
+
+                // json 객체의 형에 알맞게 저장
+                if(obj instanceof String){
+                    String value=(String)map.get(key);
+                    String tmp="    \"%s\" : " + "\"%s\"";
+                    jsonBuilder.append(tmp.formatted(key,value));
+                } else if (obj instanceof Integer) {
+                    int value=(int)map.get(key);
+                    String tmp="    \"%s\" : " + "\"%s\"";
+                    jsonBuilder.append(tmp.formatted(key,value));
+                }
+
+                if(i==map.size()-1){
+                    break;
+                }
+
+
+                jsonBuilder.append("\n");
+                i++;
+
+            }
+            jsonBuilder.append("\n}");
+            return jsonBuilder.toString();
+        }
+
+
+
+
+
     }
 
 }
