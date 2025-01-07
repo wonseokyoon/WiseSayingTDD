@@ -124,12 +124,23 @@ public class FileTest {
     @Test
     @DisplayName("폴더가 없을때 파일 생성 시 폴더 생성 후 파일 생성")
     void v8(){
-        String path="src/test/java/test/test2/test.txt";
+        String path="test2/test.txt";
 
         Util.File.createFile(path);
 
         assertThat(Files.exists(Paths.get(path)))
                 .isTrue();
+    }
 
+    @Test
+    @DisplayName("파일 삭제 -> 폴더가 비어있을때 삭제 여부")
+    void v9(){
+        String path="test/test2/test.txt";
+
+        Util.File.deleteForce(path);    // 강제 삭제
+        Util.File.delete(path);
+
+        assertThat(Files.exists(Paths.get(path)))
+                .isTrue();
     }
 }

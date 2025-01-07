@@ -55,6 +55,9 @@ public class Util {
 
         public static void delete(String file) {
             Path filePath=Paths.get(file);
+            if(filePath.getParent()!=null){ //폴더가 없으면
+                createDir(filePath.getParent().toString());
+            }
 
             try {
                 Files.delete(filePath);
@@ -84,6 +87,9 @@ public class Util {
                 System.out.println("폴더 삭제 실패");
                 e.printStackTrace();
             }
+        }
+
+        public static void deleteForce(String path) {
         }
     }
 
