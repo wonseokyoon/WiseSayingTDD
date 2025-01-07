@@ -16,6 +16,11 @@ public class Util {
         public static void createFile(String file) {
             Path filepath=Paths.get(file);
 
+            if(filepath.getParent() != null) {  //폴더가 없으면
+                createDir(filepath.getParent().toString());
+            }
+
+
             try {
                 if(Files.exists(filepath)){
 //                    System.out.println("파일이 이미 존재함");
@@ -45,6 +50,7 @@ public class Util {
 
         public static void write(String file, String writeContent) {
             Path filePath=Paths.get(file);
+
             try {
                 Files.writeString(filePath,writeContent);
             } catch (IOException e) {
@@ -55,9 +61,8 @@ public class Util {
 
         public static void delete(String file) {
             Path filePath=Paths.get(file);
-            if(filePath.getParent()!=null){ //폴더가 없으면
-                createDir(filePath.getParent().toString());
-            }
+
+            if(!Files.exists(filePath)) return;
 
             try {
                 Files.delete(filePath);
@@ -90,6 +95,8 @@ public class Util {
         }
 
         public static void deleteForce(String path) {
+
+
         }
     }
 

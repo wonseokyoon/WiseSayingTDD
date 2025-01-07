@@ -141,6 +141,6 @@ public class FileTest {
         Util.File.delete(path);
 
         assertThat(Files.exists(Paths.get(path)))
-                .isTrue();
+                .isFalse();
     }
 }
