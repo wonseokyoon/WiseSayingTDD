@@ -1,13 +1,15 @@
 package org.example.domain.wiseSaying;
 
+import org.example.domain.wiseSaying.repository.WiseSayingFileRepository;
+
 import java.util.List;
 import java.util.Optional;
 
 public class WiseSayingService {
 
-    private WiseSayingRepository wiseSayingRepository;
+    private final WiseSayingFileRepository wiseSayingRepository;
     public WiseSayingService(){
-        wiseSayingRepository=new WiseSayingRepository();
+        wiseSayingRepository=new WiseSayingFileRepository();
     }
 
     public WiseSaying write(String content, String author) {

@@ -3,6 +3,8 @@ package org.example.standard;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -127,27 +129,69 @@ public class Util {
     public static class Json{
 
         //map을 Json으로 변환
-        public static String mapToJson(Map<String,Object> map){
-            StringBuilder jsonBuilder=new StringBuilder();
+        public static String mapToJson(Map<String, Object> map) {
+
+            StringBuilder jsonBuilder = new StringBuilder();
+
             jsonBuilder.append("{\n");
 
-            String str=map.keySet().stream()
-                    .map(k->map.get(k) instanceof String
-                    ?"    \"%s\" : \"%s\"".formatted(k, map.get(k))
-                    :"    \"%s\" : %s".formatted(k, map.get(k))
+            String str = map.keySet().stream()
+                    .map(k -> map.get(k) instanceof String
+                            ? "    \"%s\" : \"%s\"".formatted(k, map.get(k))
+                            : "    \"%s\" : %s".formatted(k, map.get(k))
                     ).collect(Collectors.joining(",\n"));
 
             jsonBuilder.append(str);
             jsonBuilder.append("\n}");
+
             return jsonBuilder.toString();
         }
 
-
         public static void writeAsMap(String filePath, Map<String, Object> wiseSayingMap) {
-            String jsonstr=mapToJson(wiseSayingMap);
-            File.write(filePath,jsonstr);
+            String jsonStr = mapToJson(wiseSayingMap);
+            File.write(filePath, jsonStr);
+        }
 
+        public static Map<String, Object> readAsMap(String filePath) {
+            String jsonStr = File.readAsString(filePath);
+            return jsonToMap(jsonStr);
+        }
+
+        public static Map<String, Object> jsonToMap(String jsonStr) {
+
+//            String jsonStr = """
+//
+//                    "id" : 1,
+//                    "content" : "aaa",
+//                    "author" : "bbb"
+//
+//                """;
+
+            Map<String, Object> resultMap = new LinkedHashMap<>();
+
+            jsonStr = jsonStr.replaceAll("\\{", "")
+                    .replaceAll("}", "")
+                    .replaceAll("\n", "")
+                    .replaceAll(" : ", ":");
+
+            Arrays.stream(jsonStr.split(",")) // ["id" : 1, "content" : "aaa", "author" : "bbb"]
+                    .map(p -> p.trim().split(":")) //  p => [""id" : 1"]
+                    .forEach(p -> { // p => ["id", 1]
+                        String key = p[0].replaceAll("\"", "");
+                        String value = p[1];
+
+                        if(value.startsWith("\"")) {
+                            resultMap.put(key, value.replaceAll("\"", ""));
+                        } else if(value.contains(".")) {
+                            resultMap.put(key, Double.parseDouble(value));
+                        } else if(value.equals("true") || value.equals("false")) {
+                            resultMap.put(key, Boolean.parseBoolean(value));
+                        } else {
+                            resultMap.put(key, Integer.parseInt(value));
+                        }
+                    });
+
+            return resultMap;
         }
     }
-
 }
