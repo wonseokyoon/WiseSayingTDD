@@ -85,6 +85,8 @@ public class Util {
         public static void deleteDir(String dirPath) {
             Path DirPath=Paths.get(dirPath);
 
+            if(!Files.exists(DirPath)) return;
+
             try {
                 Files.delete(DirPath);
             } catch (IOException e) {
