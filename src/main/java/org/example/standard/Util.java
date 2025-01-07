@@ -143,9 +143,11 @@ public class Util {
         }
 
 
+        public static void writeAsMap(String filePath, Map<String, Object> wiseSayingMap) {
+            String jsonstr=mapToJson(wiseSayingMap);
+            File.write(filePath,jsonstr);
 
-
-
+        }
     }
 
 }
