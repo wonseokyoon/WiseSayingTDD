@@ -5,6 +5,7 @@ import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -61,10 +62,10 @@ public class Util {
             }
         }
 
-        public static void delete(String file) {
+        public static boolean delete(String file) {
             Path filePath=Paths.get(file);
 
-            if(!Files.exists(filePath)) return;
+            if(!Files.exists(filePath)) return false;
 
             try {
                 Files.delete(filePath);
@@ -72,6 +73,8 @@ public class Util {
                 System.out.println("파일 삭제 실패");
                 e.printStackTrace();
             }
+
+            return false;
         }
 
 
@@ -124,9 +127,24 @@ public class Util {
                 System.err.println("폴더 삭제 중 오류 발생: " + e.getMessage());
             }
         }
-    }
+        public static List<Path> getPaths(String dirPathStr) {
 
-    public static class Json{
+            Path dirPath = Paths.get(dirPathStr);
+
+            try {
+                return Files.walk(dirPath)
+                        .filter(Files::isRegularFile)
+                        .toList();
+
+            } catch (Exception e) {
+                System.out.println("파일 목록 가져오기 실패");
+                e.printStackTrace();
+            }
+
+            return List.of();
+        }
+    }
+        public static class Json{
 
         //map을 Json으로 변환
         public static String mapToJson(Map<String, Object> map) {

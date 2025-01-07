@@ -11,21 +11,20 @@ public class WiseSayingMemRepository implements WiseSayingRepository {
     private final List<WiseSaying> wiseSayingList;
     private int lastId;
 
-    public WiseSayingMemRepository(){
-        wiseSayingList=new ArrayList<>();
+    public WiseSayingMemRepository() {
+        wiseSayingList = new ArrayList<>();
         System.out.println("메모리 DB 사용");
     }
-    public WiseSaying save(WiseSaying wiseSaying){
 
-        // 등록과 수정 구별
-
-        if(!wiseSaying.isNew()){
+    public WiseSaying save(WiseSaying wiseSaying) {
+        if(!wiseSaying.isNew()) {
             return wiseSaying;
         }
 
-        int id=++lastId;
+        int id = ++lastId;
         wiseSaying.setId(id);
         wiseSayingList.add(wiseSaying);
+
         return wiseSaying;
     }
 
@@ -38,9 +37,9 @@ public class WiseSayingMemRepository implements WiseSayingRepository {
     }
 
     public Optional<WiseSaying> findById(int id) {
-        Optional<WiseSaying> wiseSaying=wiseSayingList.stream()
-                .filter(w-> w.getId()==id)
+
+        return wiseSayingList.stream()
+                .filter(w -> w.getId() == id)
                 .findFirst();
-        return wiseSaying;
     }
 }

@@ -3,39 +3,69 @@ package org.example.domain.wiseSaying.repository;
 import org.example.domain.wiseSaying.WiseSaying;
 import org.example.standard.Util;
 
-import java.util.ArrayList;
+import java.nio.file.Path;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class WiseSayingFileRepository implements WiseSayingRepository {
 
-    private final List<WiseSaying> wiseSayingList;
-    private int lastId;
+    private static final String DB_PATH = "db/test/wiseSaying/";
 
     public WiseSayingFileRepository() {
-        wiseSayingList = new ArrayList<>();
         System.out.println("파일 DB 사용");
     }
 
     public WiseSaying save(WiseSaying wiseSaying) {
 
-        // 파일 저장
-        Util.Json.writeAsMap("db/wiseSaying/%d.json".formatted(wiseSaying.getId()), wiseSaying.toMap());
+        Util.Json.writeAsMap(getFilePath(wiseSaying.getId()), wiseSaying.toMap());
         return wiseSaying;
     }
 
     public List<WiseSaying> findAll() {
-        return wiseSayingList;
+
+
+
+//        명령형
+//        List<Path> paths = Util.File.getPaths(DB_PATH);
+//        List<WiseSaying> wiseSayingList = new ArrayList<>();
+//
+//        for(Path path : paths) {
+//            String filePath = path.toString();
+//            Map<String, Object> map = Util.Json.readAsMap(filePath);
+//            WiseSaying wiseSaying = WiseSaying.fromMap(map);
+//            wiseSayingList.add(wiseSaying);
+//        }
+//
+//        return wiseSayingList;
+
+
+        // 선언형
+        return Util.File.getPaths(DB_PATH).stream()
+                .map(Path::toString)
+                .map(Util.Json::readAsMap)
+                .map(WiseSaying::fromMap)
+                .toList();
+
     }
 
     public boolean deleteById(int id) {
-        return wiseSayingList.removeIf(w -> w.getId() == id); // 삭제 성공 : true, 삭제 실패 : false
+        return Util.File.delete(getFilePath(id));
     }
 
     public Optional<WiseSaying> findById(int id) {
+        String path = getFilePath(id);
+        Map<String, Object> map = Util.Json.readAsMap(path);
 
-        return wiseSayingList.stream()
-                .filter(w -> w.getId() == id)
-                .findFirst();
+        if (map.isEmpty()) {
+            return Optional.empty();
+        }
+
+        return Optional.of(WiseSaying.fromMap(map));
+
+    }
+
+    private String getFilePath(int id) {
+        return DB_PATH + id + ".json";
     }
 }
